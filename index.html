@@ -3,133 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjay K Chelliah | Senior MLOps Engineer</title>
+    <title>Sanjay K Chelliah | LLM Infrastructure</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .dot { height: 8px; width: 8px; background-color: #000; border-radius: 50%; display: inline-block; margin-right: 10px; }
+        .section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 1.5rem; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
+<body class="bg-white text-zinc-900 antialiased selection:bg-zinc-200">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-            <span class="text-xl font-bold tracking-tight text-blue-600">SKC.</span>
-            <div class="space-x-6 text-sm font-medium">
-                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
-                <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
-                <a href="mailto:sanjaychelliah98@gmail.com" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="max-w-5xl mx-auto px-4 py-20 text-center">
-        <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Sanjay K Chelliah</h1>
-        <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-            Senior MLOps Engineer specializing in **LLM Infrastructure** and **AI Platform Engineering**. 
-            Building the foundation for high-performance generative AI.
-        </p>
-        <div class="flex justify-center gap-4 text-2xl">
-            <a href="https://linkedin.com/in/sanjay-chelliah-a2052b1a0" class="text-slate-400 hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/sanjaychelliah" class="text-slate-400 hover:text-slate-900 transition"><i class="fab fa-github"></i></a>
-            <a href="mailto:sanjaychelliah98@gmail.com" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-envelope"></i></a>
-        </div>
-    </header>
-
-    <section class="max-w-5xl mx-auto px-4 mb-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-blue-600 text-white p-8 rounded-2xl shadow-lg transform hover:-translate-y-1 transition">
-                <p class="text-sm uppercase font-bold opacity-80 mb-2">Inference Speed</p>
-                <p class="text-4xl font-black">420 t/s</p>
-                <p class="mt-2 text-sm italic">Top 5 Globally (Artificial Analysis)</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transform hover:-translate-y-1 transition">
-                <p class="text-sm uppercase font-bold text-blue-600 mb-2">Latency (TTFT)</p>
-                <p class="text-4xl font-black text-slate-800">0.42s</p>
-                <p class="mt-2 text-sm text-slate-500 italic text-sm">Top 5 Globally</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transform hover:-translate-y-1 transition">
-                <p class="text-sm uppercase font-bold text-blue-600 mb-2">Dev Impact</p>
-                <p class="text-4xl font-black text-slate-800">10x</p>
-                <p class="mt-2 text-sm text-slate-500 italic text-sm">Increase in SDK Downloads</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="max-w-5xl mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold mb-10 border-b pb-4">Work Experience</h2>
+    <main class="max-w-2xl mx-auto px-6 py-20">
         
-        <div class="space-y-12">
-            <div class="relative pl-8 border-l-2 border-slate-200">
-                <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
-                <div class="flex flex-wrap justify-between items-baseline mb-2">
-                    <h3 class="text-2xl font-bold">Senior MLOps Engineer @ Clarifai</h3>
-                    <span class="text-slate-500 font-medium italic">Mar 2024 - Present</span>
-                </div>
-                <ul class="space-y-3 text-slate-700">
-                    <li>• Led the development of the Clarifai LLM inference engine, achieving **420 tokens/sec**.</li>
-                    <li>• Optimized pipelines using **vLLM, SGLang, and LMDeploy** to reach 0.42s TTFT.</li>
-                    <li>• Architected **MCP-based** agent serving infrastructure for tool integration.</li>
-                    <li>• Scaled sports analytics pipelines processing **millions of frames** weekly.</li>
-                </ul>
+        <header class="mb-16">
+            <h1 class="text-3xl font-bold tracking-tight mb-2">Sanjay K Chelliah</h1>
+            <p class="text-zinc-500 text-lg mb-6">Senior MLOps Engineer @ Clarifai</p>
+            
+            <div class="flex gap-4 text-sm font-medium">
+                <a href="mailto:sanjaychelliah98@gmail.com" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">Email</a>
+                <a href="https://github.com/sanjaychelliah" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">GitHub</a>
+                <a href="https://linkedin.com/in/sanjay-chelliah-a2052b1a0" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">LinkedIn</a>
             </div>
+        </header>
 
-            <div class="relative pl-8 border-l-2 border-slate-200">
-                <div class="absolute -left-[9px] top-0 w-4 h-4 bg-slate-300 rounded-full"></div>
-                <div class="flex flex-wrap justify-between items-baseline mb-2">
-                    <h3 class="text-2xl font-bold">MLOps Engineer @ Clarifai</h3>
-                    <span class="text-slate-500 font-medium italic">Apr 2023 - Feb 2024</span>
-                </div>
-                <ul class="space-y-3 text-slate-700">
-                    <li>• Developed RAG systems using **PyTorch** and **Hugging Face**.</li>
-                    <li>• Automated content filtering models, saving **4x manual review time**.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        <section class="mb-16">
+            <h2 class="section-title">Profile</h2>
+            <p class="text-zinc-600 leading-relaxed">
+                Building and scaling production AI systems with a focus on LLM inference optimization, 
+                distributed ML pipelines, and GenAI infrastructure. Currently architecting high-throughput 
+                platforms and agentic serving layers.
+            </p>
+        </section>
 
-    <section id="skills" class="bg-white py-20 mt-12">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-10 text-center">Core Technical Stack</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <section class="mb-16">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="space-y-10">
                 <div>
-                    <h4 class="font-bold text-blue-600 mb-4 uppercase text-xs tracking-widest">ML / LLM</h4>
-                    <ul class="text-sm space-y-2 font-medium text-slate-600">
-                        <li>PyTorch / TensorFlow</li>
-                        <li>vLLM / SGLang</li>
-                        <li>RAG / Multi-Agent</li>
-                        <li>ONNX / TensorRT</li>
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-bold">Clarifai</h3>
+                        <span class="text-xs text-zinc-400 font-mono">2023 — PRESENT</span>
+                    </div>
+                    <p class="text-sm text-zinc-500 mb-3 italic">Senior MLOps Engineer</p>
+                    <ul class="text-sm text-zinc-600 space-y-2">
+                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Architected LLM inference engines and optimized pipelines using vLLM and SGLang.</li>
+                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Integrated MCP-based agent serving infrastructure for production tool-calling.</li>
+                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Managed high-throughput video analytics pipelines processing millions of frames weekly.</li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-blue-600 mb-4 uppercase text-xs tracking-widest">Infrastructure</h4>
-                    <ul class="text-sm space-y-2 font-medium text-slate-600">
-                        <li>Kubernetes / Docker</li>
-                        <li>GitHub Actions</li>
-                        <li>AWS / Azure / GCP</li>
-                        <li>Terraform</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-blue-600 mb-4 uppercase text-xs tracking-widest">Data</h4>
-                    <ul class="text-sm space-y-2 font-medium text-slate-600">
-                        <li>PostgreSQL</li>
-                        <li>Qdrant Vector DB</li>
-                        <li>MinIO / NoSQL</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-blue-600 mb-4 uppercase text-xs tracking-widest">Vision</h4>
-                    <ul class="text-sm space-y-2 font-medium text-slate-600">
-                        <li>OpenCV</li>
-                        <li>YOLO / SAM</li>
-                        <li>MOT Techniques</li>
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-bold">Kandula.ai</h3>
+                        <span class="text-xs text-zinc-400 font-mono">2021 — 2023</span>
+                    </div>
+                    <p class="text-sm text-zinc-500 mb-3 italic">ML Engineer</p>
+                    <ul class="text-sm text-zinc-600 space-y-2">
+                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Developed real-time video inference engines for continuous stream processing.</li>
+                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Deployed 50+ models using ONNX for cross-platform compatibility.</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="max-w-5xl mx-auto px-4 py-12 text-center text-slate-400 text-sm">
-        <p>© 2026 Sanjay K Chelliah. Built with Tailwind CSS.</p>
-    </footer>
+        <section class="mb-16">
+            <h2 class="section-title">Stack</h2>
+            <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+                <div>
+                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Systems</h4>
+                    <p class="text-sm text-zinc-600">Kubernetes, Docker, AWS, Terraform, CI/CD</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Inference</h4>
+                    <p class="text-sm text-zinc-600">vLLM, SGLang, TensorRT, ONNX, Triton</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">ML/AI</h4>
+                    <p class="text-sm text-zinc-600">PyTorch, RAG, MCP, Multi-Agent Systems</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Languages</h4>
+                    <p class="text-sm text-zinc-600">Python, SQL, Shell Scripting</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="section-title">Education</h2>
+            <div class="flex justify-between items-baseline mb-1">
+                <h3 class="text-sm font-bold">M.Sc. Data Science</h3>
+                <span class="text-xs text-zinc-400 font-mono">Loyola College</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+                <h3 class="text-sm font-bold">B.Sc. Mathematics</h3>
+                <span class="text-xs text-zinc-400 font-mono">Vivekananda College</span>
+            </div>
+        </section>
+
+        <footer class="pt-8 border-t border-zinc-100 text-xs text-zinc-400">
+            Chennai, India • Updated March 2026
+        </footer>
+
+    </main>
 
 </body>
 </html>
