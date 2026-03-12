@@ -1,110 +1,741 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjay K Chelliah | LLM Infrastructure</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
-        .dot { height: 8px; width: 8px; background-color: #000; border-radius: 50%; display: inline-block; margin-right: 10px; }
-        .section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 1.5rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjay K Chelliah | LLM Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f4f0;
+    --surface: #eeecea;
+    --border: #d8d5cf;
+    --text: #1a1917;
+    --muted: #6b6860;
+    --accent: #1a1917;
+    --tag-bg: #e2dfd9;
+    --tag-text: #3d3b36;
+    --link: #1a1917;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --green: #2d6a4f;
+    --green-bg: #d8f3dc;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .name-block h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .name-block .role {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .header-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .header-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .header-links a:hover { color: var(--text); text-decoration: none; }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  /* ── PROFILE ── */
+  .profile-text {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 600px;
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    display: flex;
+    gap: 0;
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .stat {
+    flex: 1;
+    padding: 16px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  /* ── EXPERIENCE ── */
+  .job { margin-bottom: 40px; }
+  .job:last-child { margin-bottom: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .job-title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .job-dates {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .job-company {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .job-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job-bullets li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+    color: #2e2c28;
+    line-height: 1.65;
+  }
+
+  .job-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-family: var(--mono);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  .highlight {
+    background: var(--tag-bg);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .badge-green {
+    background: var(--green-bg);
+    color: var(--green);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .job-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    background: var(--surface);
+    transition: border-color 0.15s;
+  }
+
+  .project-card:hover { border-color: #b0aca4; }
+
+  .project-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .project-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-left: 8px;
+    margin-top: 1px;
+  }
+  .project-link:hover { color: var(--text); text-decoration: none; }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  /* ── OPEN SOURCE ── */
+  .oss-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .oss-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .oss-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .oss-left { flex: 1; min-width: 200px; }
+
+  .oss-repo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .oss-repo a { color: var(--text); }
+  .oss-repo a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .oss-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .oss-right {
+    flex-shrink: 0;
+  }
+
+  /* ── STACK ── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stack-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stack-cell:nth-child(even) { border-right: none; }
+  .stack-cell:nth-last-child(1),
+  .stack-cell:nth-last-child(2) { border-bottom: none; }
+
+  .stack-category {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* ── EDUCATION & CERTS ── */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-left .edu-degree { font-size: 14.5px; font-weight: 500; }
+  .edu-left .edu-school { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .edu-left .edu-note { font-size: 12.5px; color: var(--muted); font-style: italic; margin-top: 2px; }
+
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── CERTS ── */
+  .certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+  }
+
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--tag-bg);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    header { padding: 48px 0 40px; }
+    .header-inner { flex-direction: column; }
+    .header-links { align-items: flex-start; }
+    .stack-grid { grid-template-columns: 1fr; }
+    .stack-cell:nth-child(even) { border-right: none; }
+    .stack-cell { border-right: none; }
+    .stack-cell:nth-last-child(1) { border-bottom: none; }
+    .stack-cell:nth-last-child(2) { border-bottom: 1px solid var(--border); }
+  }
+</style>
 </head>
-<body class="bg-white text-zinc-900 antialiased selection:bg-zinc-200">
+<body>
+<div class="container">
 
-    <main class="max-w-2xl mx-auto px-6 py-20">
-        
-        <header class="mb-16">
-            <h1 class="text-3xl font-bold tracking-tight mb-2">Sanjay K Chelliah</h1>
-            <p class="text-zinc-500 text-lg mb-6">Senior MLOps Engineer @ Clarifai</p>
-            
-            <div class="flex gap-4 text-sm font-medium">
-                <a href="mailto:sanjaychelliah98@gmail.com" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">Email</a>
-                <a href="https://github.com/sanjaychelliah" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">GitHub</a>
-                <a href="https://linkedin.com/in/sanjay-chelliah-a2052b1a0" class="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">LinkedIn</a>
-            </div>
-        </header>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="name-block">
+        <h1>Sanjay K Chelliah</h1>
+        <div class="role">Senior MLOps Engineer · LLM Infrastructure · AI Platform</div>
+      </div>
+      <div class="header-links">
+        <a href="mailto:sanjaychelliah98@gmail.com">sanjaychelliah98@gmail.com</a>
+        <a href="https://github.com/sanjaychelliah" target="_blank">github.com/sanjaychelliah</a>
+        <a href="https://linkedin.com/in/sanjay-chelliah-a2052b1a0" target="_blank">linkedin/sanjay-chelliah</a>
+        <a href="tel:+919003056793">+91 900 305 6793 · Chennai, IN</a>
+      </div>
+    </div>
+  </header>
 
-        <section class="mb-16">
-            <h2 class="section-title">Profile</h2>
-            <p class="text-zinc-600 leading-relaxed">
-                Building and scaling production AI systems with a focus on LLM inference optimization, 
-                distributed ML pipelines, and GenAI infrastructure. Currently architecting high-throughput 
-                platforms and agentic serving layers.
-            </p>
-        </section>
+  <!-- PROFILE -->
+  <section>
+    <div class="section-label">Profile</div>
+    <p class="profile-text">
+      Senior AI/ML Engineer with 5+ years building and scaling production GenAI infrastructure —
+      LLM inference engines, RAG architectures, and MCP-based multi-agent systems. Delivered top
+      global benchmark results (420 tok/s on GPT-OSS 120B; 3rd globally for Minimax M2.5 TTFT) while
+      leading a team of 4+ engineers. Deep expertise across the full MLOps stack: Kubernetes
+      orchestration, CI/CD automation, computer vision pipelines, and model optimization via LoRA/PEFT
+      and quantization.
+    </p>
 
-        <section class="mb-16">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="space-y-10">
-                <div>
-                    <div class="flex justify-between items-baseline mb-2">
-                        <h3 class="font-bold">Clarifai</h3>
-                        <span class="text-xs text-zinc-400 font-mono">2023 — PRESENT</span>
-                    </div>
-                    <p class="text-sm text-zinc-500 mb-3 italic">Senior MLOps Engineer</p>
-                    <ul class="text-sm text-zinc-600 space-y-2">
-                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Architected LLM inference engines and optimized pipelines using vLLM and SGLang.</li>
-                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Integrated MCP-based agent serving infrastructure for production tool-calling.</li>
-                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Managed high-throughput video analytics pipelines processing millions of frames weekly.</li>
-                    </ul>
-                </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">420</div>
+        <div class="stat-label">tokens/sec<br>GPT-OSS 120B</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0.79s</div>
+        <div class="stat-label">TTFT<br>Minimax M2.5 (#3 global)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10×</div>
+        <div class="stat-label">SDK download<br>growth</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">80%</div>
+        <div class="stat-label">GPU memory saved<br>via LoRA/PEFT</div>
+      </div>
+    </div>
+  </section>
 
-                <div>
-                    <div class="flex justify-between items-baseline mb-2">
-                        <h3 class="font-bold">Kandula.ai</h3>
-                        <span class="text-xs text-zinc-400 font-mono">2021 — 2023</span>
-                    </div>
-                    <p class="text-sm text-zinc-500 mb-3 italic">ML Engineer</p>
-                    <ul class="text-sm text-zinc-600 space-y-2">
-                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Developed real-time video inference engines for continuous stream processing.</li>
-                        <li class="flex items-start"><span class="dot mt-1.5 flex-shrink-0"></span>Deployed 50+ models using ONNX for cross-platform compatibility.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">Experience</div>
 
-        <section class="mb-16">
-            <h2 class="section-title">Stack</h2>
-            <div class="grid grid-cols-2 gap-y-8 gap-x-4">
-                <div>
-                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Systems</h4>
-                    <p class="text-sm text-zinc-600">Kubernetes, Docker, AWS, Terraform, CI/CD</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Inference</h4>
-                    <p class="text-sm text-zinc-600">vLLM, SGLang, TensorRT, ONNX, Triton</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">ML/AI</h4>
-                    <p class="text-sm text-zinc-600">PyTorch, RAG, MCP, Multi-Agent Systems</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-zinc-400 mb-2 uppercase">Languages</h4>
-                    <p class="text-sm text-zinc-600">Python, SQL, Shell Scripting</p>
-                </div>
-            </div>
-        </section>
+    <!-- Clarifai Senior -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior MLOps Engineer</span>
+        <span class="job-dates">Mar 2024 — Present</span>
+      </div>
+      <div class="job-company">Clarifai</div>
+      <ul class="job-bullets">
+        <li>Led the Clarifai LLM inference engine — <span class="highlight">420 tok/s</span> on GPT-OSS 120B, top 5 on Artificial Analysis benchmarks.</li>
+        <li>Optimized pipelines via <span class="highlight">vLLM</span>, <span class="highlight">SGLang</span>, and <span class="highlight">LMDeploy</span> with speculative decoding; achieved <span class="highlight">0.79s TTFT</span>, ranked 3rd globally for Minimax M2.5.</li>
+        <li>Architected <span class="highlight">MCP</span>-based agent serving infrastructure with tool integration, LLM-as-a-judge evaluation, and human-in-the-loop feedback loops for production LLM agents.</li>
+        <li>Built large-scale video analytics pipelines using <span class="highlight">YOLO</span> + <span class="highlight">SAM</span> with homography and MOT (90% MOTA) for sports analytics — processing millions of frames weekly.</li>
+        <li>Implemented production CI/CD using <span class="highlight">GitHub Actions</span>, automating build, test, and deployment for AI services.</li>
+        <li>Applied <span class="highlight">LoRA</span> and <span class="highlight">PEFT</span> adapters for fine-tuning, reducing GPU memory by up to 80% vs. full-parameter training.</li>
+        <li>Contributed to Clarifai Python SDK and CLI; drove a 10× increase in SDK downloads through improved model training workflows and platform integration.</li>
+      </ul>
+    </div>
 
-        <section class="mb-16">
-            <h2 class="section-title">Education</h2>
-            <div class="flex justify-between items-baseline mb-1">
-                <h3 class="text-sm font-bold">M.Sc. Data Science</h3>
-                <span class="text-xs text-zinc-400 font-mono">Loyola College</span>
-            </div>
-            <div class="flex justify-between items-baseline">
-                <h3 class="text-sm font-bold">B.Sc. Mathematics</h3>
-                <span class="text-xs text-zinc-400 font-mono">Vivekananda College</span>
-            </div>
-        </section>
+    <div class="job-divider"></div>
 
-        <footer class="pt-8 border-t border-zinc-100 text-xs text-zinc-400">
-            Chennai, India • Updated March 2026
-        </footer>
+    <!-- Clarifai MLOps -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">MLOps Engineer</span>
+        <span class="job-dates">Apr 2023 — Feb 2024</span>
+      </div>
+      <div class="job-company">Clarifai</div>
+      <ul class="job-bullets">
+        <li>Architected an end-to-end multi-modal platform integrating <span class="highlight">LLMs</span>, <span class="highlight">VLMs</span>, and <span class="highlight">RAG</span> for document Q&A — 3× reduction in query latency across a 1M+ document knowledge base.</li>
+        <li>Built semantic search pipelines using <span class="highlight">Qdrant</span> vector database and <span class="highlight">LangChain</span> for SOTA prompt engineering.</li>
+        <li>Designed and developed the Clarifai Python SDK (open source) — contributed annotated dataset handling and model training workflows.</li>
+      </ul>
+    </div>
 
-    </main>
+    <div class="job-divider"></div>
 
+    <!-- Pavo & Tusker -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">AI Engineer</span>
+        <span class="job-dates">Jun 2021 — Mar 2023</span>
+      </div>
+      <div class="job-company">Pavo &amp; Tusker Innovations — Kandula.ai platform</div>
+      <ul class="job-bullets">
+        <li>Car dent detection &amp; segmentation — trained and deployed automated damage assessment for an insurer, achieving <span class="highlight">0.97 mAP</span> with YOLO-based models.</li>
+        <li>Real-time pothole detection using <span class="highlight">RT-DETR</span> transformer architecture — 95% accuracy on 100k-image dataset. <span class="badge-green">NVIDIA Hackathon Finalist</span></li>
+        <li>Designed and deployed the "Droid" engine for continuous real-time video inference, extended with intrusion detection workflows.</li>
+        <li>Fire detection, retail gaze tracking, and crowd detection droids — iterative R&D from paper to production.</li>
+        <li>Exported and deployed 50+ ML models via <span class="highlight">ONNX</span> and <span class="highlight">TensorRT</span>, with INT8/FP16 quantization for cross-platform inference.</li>
+        <li>API/integration design working closely with backend team; participated in customer demo calls and walkthroughs.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">Clarifai LLM Inference Engine</div>
+        </div>
+        <div class="project-desc">High-throughput LLM serving infrastructure ranked in the global top 5 on Artificial Analysis. Implements speculative decoding, continuous batching, and multi-model routing.</div>
+        <div class="project-tags">
+          <span class="tag">vLLM</span><span class="tag">SGLang</span><span class="tag">LMDeploy</span><span class="tag">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">MCP Agent Serving Infrastructure</div>
+        </div>
+        <div class="project-desc">Production-grade agentic platform enabling tool integration and retrieval for LLM agents. Includes LLM-as-a-judge eval harness and human-in-the-loop feedback pipeline.</div>
+        <div class="project-tags">
+          <span class="tag">MCP</span><span class="tag">RAG</span><span class="tag">Multi-agent</span><span class="tag">LangChain</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">Sports Video Analytics Pipeline</div>
+        </div>
+        <div class="project-desc">End-to-end pipeline processing millions of frames weekly using homography, multi-object tracking (90% MOTA), YOLO and SAM models for real-time sports analytics.</div>
+        <div class="project-tags">
+          <span class="tag">YOLO</span><span class="tag">SAM</span><span class="tag">MOT</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">Multi-modal RAG Platform</div>
+        </div>
+        <div class="project-desc">Document Q&A platform integrating LLMs, VLMs, and RAG over a 1M+ document knowledge base. Achieved 3× reduction in query latency through pipeline optimization.</div>
+        <div class="project-tags">
+          <span class="tag">RAG</span><span class="tag">Qdrant</span><span class="tag">VLMs</span><span class="tag">LangChain</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">Pothole Detection — NVIDIA Hackathon</div>
+          <span class="badge-green" style="font-size:10px; padding: 2px 6px;">Finalist</span>
+        </div>
+        <div class="project-desc">Transformer-based real-time pothole detection system. Finalist in NVIDIA Smart City Hackathon (Asia) conducted with Oracle. 95% accuracy on 100k-image dataset.</div>
+        <div class="project-tags">
+          <span class="tag">RT-DETR</span><span class="tag">PyTorch</span><span class="tag">NVIDIA</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-title">Car Dent Detection System</div>
+        </div>
+        <div class="project-desc">Automated vehicle damage assessment for an insurance client. YOLO-based detection and segmentation pipeline achieving industry-leading 0.97 mAP in production.</div>
+        <div class="project-tags">
+          <span class="tag">YOLO</span><span class="tag">Segmentation</span><span class="tag">0.97 mAP</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OPEN SOURCE -->
+  <section>
+    <div class="section-label">Open Source</div>
+    <div class="oss-list">
+
+      <div class="oss-item">
+        <div class="oss-left">
+          <div class="oss-repo"><a href="https://github.com/Clarifai/clarifai-python" target="_blank">Clarifai / clarifai-python</a></div>
+          <div class="oss-desc">Core contributor to the official Clarifai Python SDK. Built annotated dataset handling, model training workflows, and CLI tooling. Contributions drove a 10× increase in SDK downloads and significantly improved developer onboarding for the platform.</div>
+        </div>
+        <div class="oss-right">
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-left">
+          <div class="oss-repo">Clarifai LLM Benchmarking</div>
+          <div class="oss-desc">Developed inference optimization work that resulted in Clarifai ranking in the Artificial Analysis LLM leaderboard — 420 tok/s throughput (top 5) for GPT-OSS 120B and 0.79s TTFT (rank #3 globally) for Minimax M2.5.</div>
+        </div>
+        <div class="oss-right">
+          <span class="tag">vLLM</span>
+        </div>
+      </div>
+
+      <div class="oss-item">
+        <div class="oss-left">
+          <div class="oss-repo">Academic — Cancer Patient Classification</div>
+          <div class="oss-desc">M.Sc. research project at Adyar Cancer Institute, Chennai. Compared Logistic Regression, Decision Tree, and XGBoost on a year-long district-level cancer patient dataset to identify best-performing classification approaches for clinical use.</div>
+        </div>
+        <div class="oss-right">
+          <span class="tag">XGBoost</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section>
+    <div class="section-label">Stack</div>
+    <div class="stack-grid">
+      <div class="stack-cell">
+        <div class="stack-category">LLM Inference</div>
+        <div class="stack-items">
+          <span class="tag">vLLM</span><span class="tag">SGLang</span><span class="tag">LMDeploy</span><span class="tag">TensorRT-LLM</span><span class="tag">ATOM</span>
+        </div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-category">GenAI</div>
+        <div class="stack-items">
+          <span class="tag">RAG</span><span class="tag">MCP</span><span class="tag">LLM Agents</span><span class="tag">LoRA</span><span class="tag">PEFT</span><span class="tag">LangChain</span>
+        </div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-category">ML / AI</div>
+        <div class="stack-items">
+          <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">HuggingFace</span><span class="tag">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-category">Computer Vision</div>
+        <div class="stack-items">
+          <span class="tag">OpenCV</span><span class="tag">YOLO</span><span class="tag">SAM</span><span class="tag">RT-DETR</span><span class="tag">MOT</span><span class="tag">OCR</span>
+        </div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-category">Infrastructure</div>
+        <div class="stack-items">
+          <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">ONNX</span><span class="tag">TensorRT</span>
+        </div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-category">Cloud & Data</div>
+        <div class="stack-items">
+          <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Qdrant</span><span class="tag">PostgreSQL</span><span class="tag">MinIO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTS -->
+  <section>
+    <div class="section-label">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-degree">M.Sc., Data Science</div>
+        <div class="edu-school">Loyola College, Chennai</div>
+        <div class="edu-note">CGPA 8.3 — First Class with Distinction</div>
+      </div>
+      <div class="edu-year">2019 – 2021</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-degree">B.Sc., Mathematics</div>
+        <div class="edu-school">Vivekananda College, Chennai</div>
+      </div>
+      <div class="edu-year">2016 – 2019</div>
+    </div>
+
+    <div class="certs-list">
+      <div class="cert-item"><span>Building Real-Time Video AI Applications</span><span class="cert-issuer">NVIDIA</span></div>
+      <div class="cert-item"><span>Mastering LLMs</span><span class="cert-issuer">Analytics Vidhya</span></div>
+      <div class="cert-item"><span>Machine Learning</span><span class="cert-issuer">Coursera</span></div>
+      <div class="cert-item"><span>Python Data Structures</span><span class="cert-issuer">Coursera</span></div>
+      <div class="cert-item"><span>Programming for Everybody</span><span class="cert-issuer">Coursera</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Chennai, India</span>
+    <span>Updated March 2026</span>
+  </footer>
+
+</div>
 </body>
 </html>
