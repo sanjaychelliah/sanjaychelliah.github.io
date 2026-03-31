@@ -23,6 +23,8 @@
     --sans: 'DM Sans', sans-serif;
     --green: #2d6a4f;
     --green-bg: #d8f3dc;
+    --featured-border: #b0aca4;
+    --featured-accent: #3d3b36;
   }
 
   html { scroll-behavior: smooth; }
@@ -228,7 +230,79 @@
     margin: 32px 0;
   }
 
+  /* ── FEATURED PROJECT CARDS ── */
+  .featured-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .featured-card {
+    border: 1px solid var(--featured-border);
+    border-left: 3px solid var(--featured-accent);
+    border-radius: 8px;
+    padding: 22px 24px;
+    background: var(--surface);
+    transition: border-color 0.15s;
+  }
+
+  .featured-card:hover { border-color: #888480; border-left-color: var(--featured-accent); }
+
+  .featured-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  .featured-title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .featured-repo-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-left: 12px;
+    margin-top: 2px;
+  }
+  .featured-repo-link:hover { color: var(--text); text-decoration: none; }
+
+  .featured-tagline {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .featured-desc {
+    font-size: 13.5px;
+    color: #2e2c28;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
   /* ── PROJECTS ── */
+  .projects-sublabel {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -483,67 +557,45 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section>
-    <div class="section-label">Experience</div>
-
-    <!-- Clarifai Senior -->
-    <div class="job">
-      <div class="job-header">
-        <span class="job-title">Senior MLOps Engineer</span>
-        <span class="job-dates">Mar 2024 — Present</span>
-      </div>
-      <div class="job-company">Clarifai</div>
-      <ul class="job-bullets">
-        <li>Part of the team that built the Clarifai LLM inference engine — with some models featuring top 5 on Artificial Analysis benchmarks.</li>
-        <li>Optimized pipelines via <span class="highlight">vLLM</span>, <span class="highlight">SGLang</span>, and <span class="highlight">LMDeploy</span> with <span class="highlight">speculative decoding</span>.</li>
-        <li>Architected <span class="highlight">MCP</span>-based agent serving infrastructure with tool integration, LLM-as-a-judge evaluation, and human-in-the-loop feedback loops for production LLM agents.</li>
-        <li>Built large-scale video analytics pipelines using Object Detection, homography and MOT (90% MOTA) for sports analytics — processing millions of frames weekly.</li>
-        <li>Implemented production CI/CD using <span class="highlight">GitHub Actions</span>, automating build, test, and deployment for AI services.</li>
-        <li>Applied <span class="highlight">LoRA</span> and <span class="highlight">PEFT</span> adapters for fine-tuning, reducing GPU memory by up to 80% vs. full-parameter training.</li>
-        <li>Contributed to Clarifai Python SDK and CLI; drove a 10× increase in SDK downloads through improved model training workflows and platform integration.</li>
-      </ul>
-    </div>
-
-    <div class="job-divider"></div>
-
-    <!-- Clarifai MLOps -->
-    <div class="job">
-      <div class="job-header">
-        <span class="job-title">MLOps Engineer</span>
-        <span class="job-dates">Apr 2023 — Feb 2024</span>
-      </div>
-      <div class="job-company">Clarifai</div>
-      <ul class="job-bullets">
-        <li>Architected an end-to-end multi-modal platform integrating <span class="highlight">LLMs</span>, <span class="highlight">VLMs</span>, and <span class="highlight">RAG</span> for document Q&A — 3× reduction in query latency across a 1M+ document knowledge base.</li>
-        <li>Built semantic search pipelines using <span class="highlight">Qdrant</span> vector database and <span class="highlight">LangChain</span> for SOTA prompt engineering.</li>
-        <li>Designed and developed the Clarifai Python SDK (open source) — contributed annotated dataset handling and model training workflows.</li>
-      </ul>
-    </div>
-
-    <div class="job-divider"></div>
-
-    <!-- Pavo & Tusker -->
-    <div class="job">
-      <div class="job-header">
-        <span class="job-title">AI Engineer</span>
-        <span class="job-dates">Jun 2021 — Mar 2023</span>
-      </div>
-      <div class="job-company">Pavo &amp; Tusker Innovations — Kandula.ai platform</div>
-      <ul class="job-bullets">
-        <li>Car dent detection &amp; segmentation — trained and deployed automated damage assessment for an insurer, achieving <span class="highlight">0.97 mAP</span> with YOLO-based models.</li>
-        <li>Real-time pothole detection using <span class="highlight">RT-DETR</span> transformer architecture — 95% accuracy on 100k-image dataset. <span class="badge-green">NVIDIA Hackathon</span></li>
-        <li>Designed and deployed the "Droid" engine for continuous real-time video inference, extended with intrusion detection workflows.</li>
-        <li>Fire detection, retail gaze tracking, and crowd detection droids — iterative R&D from paper to production.</li>
-        <li>Exported and deployed 50+ ML models via <span class="highlight">ONNX</span> and <span class="highlight">TensorRT</span>, with INT8/FP16 quantization for cross-platform inference.</li>
-        <li>API/integration design working closely with backend team; participated in customer demo calls and walkthroughs.</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- PROJECTS -->
   <section>
     <div class="section-label">Projects</div>
+
+    <!-- Featured -->
+    <div class="featured-list">
+
+      <div class="featured-card">
+        <div class="featured-card-top">
+          <div class="featured-title">Docwhisper</div>
+          <a class="featured-repo-link" href="https://github.com/sanjaychelliah/docwhisper" target="_blank">↗ github</a>
+        </div>
+        <div class="featured-tagline">Ask questions directly against your documents — local LLMs, no cloud required.</div>
+        <div class="featured-desc">
+          Full RAG pipeline: ingest PDFs, chunk and embed into a vector store, retrieve and answer via a locally-running LLM through Ollama. Fast, private, runs entirely on your machine. MLflow observability baked in — query traces, retrieval quality metrics, and latency tracked per run for easy debugging and iteration.
+        </div>
+        <div class="featured-tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Ollama</span><span class="tag">RAG</span><span class="tag">Vector Search</span><span class="tag">MLflow</span>
+        </div>
+      </div>
+
+      <div class="featured-card">
+        <div class="featured-card-top">
+          <div class="featured-title">local-slm-bench</div>
+          <a class="featured-repo-link" href="https://github.com/sanjaychelliah/local-slm-bench" target="_blank">↗ github</a>
+        </div>
+        <div class="featured-tagline">Benchmark and compare small language models side-by-side — entirely offline, zero cloud.</div>
+        <div class="featured-desc">
+          Run up to 3 models simultaneously with real-time token streaming and per-model metrics. A built-in benchmark suite covers 18 prompts across 10 categories (reasoning, code, math, safety). Interactive Plotly charts visualize throughput, TTFT, RAM usage, and quality-vs-speed trade-offs — all on local hardware.
+        </div>
+        <div class="featured-tags">
+          <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Ollama</span><span class="tag">Plotly</span><span class="tag">Pandas</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Work Projects -->
+    <div class="projects-sublabel">Work</div>
     <div class="projects-grid">
 
       <div class="project-card">
@@ -606,6 +658,52 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior MLOps Engineer</span>
+        <span class="job-dates">Mar 2024 — Present</span>
+      </div>
+      <div class="job-company">Clarifai</div>
+      <ul class="job-bullets">
+        <li>Built Clarifai's LLM inference engine — top 5 globally on Artificial Analysis benchmarks, using <span class="highlight">vLLM</span>, <span class="highlight">SGLang</span>, and <span class="highlight">speculative decoding</span>.</li>
+        <li>Architected <span class="highlight">MCP</span>-based agent serving with LLM-as-a-judge eval and HITL feedback; built sports analytics pipelines (<span class="highlight">90% MOTA</span>) at millions of frames/week.</li>
+        <li>Applied <span class="highlight">LoRA</span>/<span class="highlight">PEFT</span> reducing GPU memory 80%; drove 10× SDK download growth via Clarifai Python SDK contributions.</li>
+      </ul>
+    </div>
+
+    <div class="job-divider"></div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">MLOps Engineer</span>
+        <span class="job-dates">Apr 2023 — Feb 2024</span>
+      </div>
+      <div class="job-company">Clarifai</div>
+      <ul class="job-bullets">
+        <li>Built multi-modal <span class="highlight">RAG</span> platform (LLMs + VLMs) for document Q&A — 3× latency reduction over a 1M+ document knowledge base.</li>
+        <li>Semantic search pipelines with <span class="highlight">Qdrant</span> + <span class="highlight">LangChain</span>; contributed annotated dataset handling to Clarifai Python SDK.</li>
+      </ul>
+    </div>
+
+    <div class="job-divider"></div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">AI Engineer</span>
+        <span class="job-dates">Jun 2021 — Mar 2023</span>
+      </div>
+      <div class="job-company">Pavo &amp; Tusker Innovations — Kandula.ai platform</div>
+      <ul class="job-bullets">
+        <li>Car dent detection (<span class="highlight">0.97 mAP</span>) and pothole detection (95% accuracy, <span class="highlight">RT-DETR</span>) — <span class="badge-green">NVIDIA Hackathon</span> finalist.</li>
+        <li>Deployed 50+ models via <span class="highlight">ONNX</span> and <span class="highlight">TensorRT</span> with INT8/FP16 quantization across the Kandula.ai CV platform.</li>
+      </ul>
     </div>
   </section>
 
@@ -723,7 +821,7 @@
   <!-- FOOTER -->
   <footer>
     <span>Chennai, India</span>
-    <span>Updated March 2026</span>
+    <span>Updated April 2026</span>
   </footer>
 
 </div>
